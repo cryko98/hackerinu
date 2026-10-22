@@ -6,7 +6,7 @@
   /* ---------- matrix rain ---------- */
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
-  const glyphs = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789$INUWOOF<>=:";
+  const glyphs = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789$CATMEOW<>=:";
   const fontSize = 18;
   let columns = 0;
   let drops = [];
@@ -104,45 +104,48 @@
   const commands = {
     help: () => print(
       "available commands:\n" +
-      "  whoami     who is hacker inu\n" +
+      "  whoami     who is cyber cat\n" +
       "  lore       the short version of the story\n" +
       "  hack       run a hack (try: hack moon)\n" +
-      "  buy        how to get $hackerinu\n" +
+      "  buy        how to get $cybercat\n" +
       "  ticker     print the ticker\n" +
-      "  bark       ...\n" +
+      "  meow       ...\n" +
+      "  lives      check remaining lives\n" +
       "  sudo       elevated privileges\n" +
       "  clear      clear the screen"
     ),
-    whoami: () => print("guest. but the dog in the hoodie? that's Hacker Inu.\nabandoned in a server room, raised by the hum of fans,\nnow hacking the only thing that matters: the charts."),
-    lore: () => print("everything gets hacked these days. banks. bridges. your aunt's facebook.\nso a little shiba pulled up his hood and started hacking too.\nhe never touches your wallet. only red candles, FUD and paper hands.\nhis payload landed on pump.fun. it's called $hackerinu."),
-    ticker: () => print("$hackerinu", "hl"),
-    bark: () => print("WOOF. (translation: buy the dip)", "hl"),
-    buy: () => print("1. get Phantom or Solflare\n2. load it with SOL\n3. open pump.fun and search $hackerinu\n4. hit buy. welcome to the pack."),
+    whoami: () => print("guest. but the cat in the hoodie? that's Cyber Cat.\nslept on the warmest server rack, learned every port,\nnow hacking the only thing that matters: the charts."),
+    lore: () => print("everything gets hacked these days. banks. bridges. your aunt's facebook.\ncats have been walking on keyboards for decades. it was never random.\none orange tabby pulled up his hood and stopped pretending.\nhe never touches your wallet. he just knocks red candles off the table.\nhis payload landed on pump.fun. it's called $cybercat."),
+    ticker: () => print("$cybercat", "hl"),
+    meow: () => print("MEOW. (translation: buy the dip)", "hl"),
+    purr: () => print("purrrrrrrr... (the charts are looking green)", "hl"),
+    lives: () => print("lives remaining: 9/9\nexploits used: 0\ncuriosity: maxed out", "hl"),
+    buy: () => print("1. get Phantom or Solflare\n2. load it with SOL\n3. open pump.fun and search $cybercat\n4. hit buy. welcome to the clowder."),
     sudo: (args) => {
-      if (args.join(" ") === "rm -rf fud") return printSlow(["[sudo] password for guest: ********", "removing /fud ... done", "FUD successfully deleted. good boy."], "hl");
-      print("guest is not in the sudoers file. this incident will be reported to the dog.\n(hint: sudo rm -rf fud)", "err");
+      if (args.join(" ") === "rm -rf fud") return printSlow(["[sudo] password for guest: ********", "knocking /fud off the table ... done", "FUD successfully deleted. purr."], "hl");
+      print("guest is not in the sudoers file. this incident will be reported to the cat.\n(hint: sudo rm -rf fud)", "err");
     },
     hack: (args) => {
       const target = (args.join(" ") || "the planet").toLowerCase();
       if (/wallet|seed|bank|grandma/.test(target)) {
-        return print(`refusing to hack "${target}". a good boy has a code.`, "err");
+        return print(`refusing to hack "${target}". a cat has standards.`, "err");
       }
       printSlow([
         `> target locked: ${target}`,
         "> spoofing MAC address... done",
-        "> injecting woof.dll... done",
+        "> injecting meow.dll... done",
         "> escalating privileges... [##########] 100%",
-        `ACCESS GRANTED. ${target} has been hacked by $hackerinu.`,
+        `ACCESS GRANTED. ${target} has been hacked by $cybercat.`,
       ]);
     },
     clear: () => { body.innerHTML = ""; },
-    ls: () => print("bear_market.pwned  fud_firewall.pwned  paper_hands.pwned  moon.queued  hoodie.cfg"),
-    exit: () => print("there is no exit. you're in the pack now.", "hl"),
+    ls: () => print("bear_market.pwned  fud_firewall.pwned  paper_hands.pwned  dog_coins.queued  hoodie.cfg  laser_pointer.exe"),
+    exit: () => print("there is no exit. you're in the clowder now.", "hl"),
   };
 
   function run(raw) {
     const line = raw.trim();
-    print(`guest@hackerinu:~$ ${line}`, "in");
+    print(`guest@cybercat:~$ ${line}`, "in");
     if (!line) return;
     const [cmd, ...args] = line.split(/\s+/);
     const fn = commands[cmd.toLowerCase()];
@@ -169,6 +172,6 @@
 
   document.getElementById("term").addEventListener("click", () => input.focus({ preventScroll: true }));
 
-  print("Hacker Inu OS v4.20 (pump.fun kernel)", "hl");
-  print("connection established. type 'help' to see what the dog can do.");
+  print("Cyber Cat OS v9.0 (pump.fun kernel)", "hl");
+  print("connection established. type 'help' to see what the cat can do.");
 })();
