@@ -78,6 +78,20 @@
     revealEls.forEach((el) => el.classList.add("in"));
   }
 
+  /* ---------- copy CA ---------- */
+  document.querySelectorAll(".ca-copy").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        btn.textContent = "Copied!";
+      } catch {
+        btn.textContent = "Select & copy";
+      }
+      btn.classList.add("copied");
+      setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 1600);
+    });
+  });
+
   /* ---------- interactive terminal ---------- */
   const body = document.getElementById("termBody");
   const form = document.getElementById("termForm");
@@ -109,6 +123,7 @@
       "  hack       run a hack (try: hack moon)\n" +
       "  buy        how to get $cybercat\n" +
       "  ticker     print the ticker\n" +
+      "  ca         print the contract address\n" +
       "  meow       ...\n" +
       "  lives      check remaining lives\n" +
       "  sudo       elevated privileges\n" +
@@ -117,10 +132,11 @@
     whoami: () => print("guest. but the cat in the hoodie? that's Cyber Cat.\nslept on the warmest server rack, learned every port,\nnow hacking the only thing that matters: the charts."),
     lore: () => print("everything gets hacked these days. banks. bridges. your aunt's facebook.\ncats have been walking on keyboards for decades. it was never random.\none orange tabby pulled up his hood and stopped pretending.\nhe never touches your wallet. he just knocks red candles off the table.\nhis payload landed on pump.fun. it's called $cybercat."),
     ticker: () => print("$cybercat", "hl"),
+    ca: () => print("HfWDdM3mLB8Qjw9jTRKV7sYBmu5FdX3LrQWa2d9rpump", "hl"),
     meow: () => print("MEOW. (translation: buy the dip)", "hl"),
     purr: () => print("purrrrrrrr... (the charts are looking green)", "hl"),
     lives: () => print("lives remaining: 9/9\nexploits used: 0\ncuriosity: maxed out", "hl"),
-    buy: () => print("1. get Phantom or Solflare\n2. load it with SOL\n3. open pump.fun and search $cybercat\n4. hit buy. welcome to the clowder."),
+    buy: () => print("1. get Phantom or Solflare\n2. load it with SOL\n3. open pump.fun and paste the CA (type 'ca')\n4. hit buy. welcome to the clowder."),
     sudo: (args) => {
       if (args.join(" ") === "rm -rf fud") return printSlow(["[sudo] password for guest: ********", "knocking /fud off the table ... done", "FUD successfully deleted. purr."], "hl");
       print("guest is not in the sudoers file. this incident will be reported to the cat.\n(hint: sudo rm -rf fud)", "err");
